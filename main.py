@@ -1,28 +1,28 @@
 import discord
 import random
 
-TOKEN = 'ODYyOTg2NDg0MzE4NDcwMTY0.YOgUyw.qqYdBQOm7C3Ves9pNDfMKlTHDlM'
+TOKEN = ''
 
-client = discord.client()
+Client = discord.Client()
 
 #logs the bot on
-@client.event
+@Client.event
 async def on_ready():
-    print('We have logged in as {0.user}'.format(client))
+    print('We have logged in as {0.user}'.format(Client))
 
 #client message responses to the specified server
-@client.event
+@Client.event
 async def on_message(message):
     username = str(message.author).split('#')[0]
     user_message = str(message.content)
     channel = str (message.channel.name)
     print(f'{username}: {user_message} ({channel})')
 
-    if message.author == client.user:
+    if message.author == Client.user:
         return
-    if message.channel.name == '':
+    if message.channel.name == 'atangs-bot':
         if user_message.lower() == 'hello':
-            await message.channel.send(f'Hello{username}!')
+            await message.channel.send(f'Hello {username}!')
             return
         elif user_message.lower() == 'bye':
             await message.channel.send(f'See you later {username}!')
@@ -34,7 +34,7 @@ async def on_message(message):
 
     if user_message.lower() == '!anywhere':
         await user_message.channel.send('This can be used anywhere!')
-        return 
+        return
 
 
-client.run(TOKEN)
+Client.run(TOKEN)
